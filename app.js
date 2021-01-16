@@ -32,8 +32,8 @@ function startCreatingTeam(){
     }]).then(usersAnswers => {
         const teamManager = new Manager(usersAnswers.managerName, usersAnswers.managerId, usersAnswers.managerEmail, usersAnswers.managerNumber); 
         newTeam.push(teamManager);
-        // addAnotherTeamMember();
-        createHtml();
+         addAnotherTeamMember();
+        
     
     })
 }
