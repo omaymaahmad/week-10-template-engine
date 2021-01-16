@@ -13,7 +13,29 @@ const newTeam = [];
 
 
 function startCreatingTeam(){
-//ask the Manager Questions then call another function giving them the option to add another member
+    inquirer.prompt([{
+        type: "input",
+        name: "managerName",
+        message: "Whats this team managers name?"
+    }, {
+        type: "input",
+        name: "managerId",
+        message: "Whats this team managers id?"
+    }, {
+        type: "input",
+        name: "managerEmail",
+        message: "Whats this team managers email?"
+    }, {
+        type: "input",
+        name: "managerNumber",
+        message: "Whats this team managers number?"
+    }]).then(usersAnswers => {
+        const teamManager = new Manager(usersAnswers.managerName, usersAnswers.managerId, usersAnswers.managerEmail, usersAnswers.managerNumber); 
+        newTeam.push(teamManager);
+        // addAnotherTeamMember();
+        createHtml();
+    
+    })
 }
 
 function addAnotherTeamMember(){
@@ -30,6 +52,10 @@ function addIntern(){
 
 function createHtml(){
 //If they have selected not to add another team member then render the html
+if (fs.existsSync(OUTPUT_DIR) ===false){
+    fs.mkdirSync(OUTPUT_DIR)
+}
+fs.writeFileSync(outputPath, render(newTeam))
 }
 
 startCreatingTeam();
