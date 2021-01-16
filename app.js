@@ -9,8 +9,30 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const newTeam = []; 
 
 
+function startCreatingTeam(){
+//ask the Manager Questions then call another function giving them the option to add another member
+}
+
+function addAnotherTeamMember(){
+//ask them what type of employee they would like to create
+}
+
+function addEngineer(){
+//ask them Engineer Questions then recall the function asking them if they want to add another team member
+}
+
+function addIntern(){
+//ask them Intern Questions then recall the function asking them if they want to add another team member
+}
+
+function createHtml(){
+//If they have selected not to add another team member then render the html
+}
+
+startCreatingTeam();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
