@@ -39,8 +39,26 @@ function startCreatingTeam(){
 }
 
 function addAnotherTeamMember(){
-//ask them what type of employee they would like to create
-}
+inquirer.prompt([{type: "list",
+      message: "Would you like to add another team member?",
+      name: "addTeamMember",
+      choices: ["Manager","Engineer", "Intern", "No more employees"] 
+}]).then(userChoice => {
+    switch (userChoice.addTeamMember) {
+        case "Manager":
+            addManager();
+            break;
+        case "Engineer":
+            addEngineer();
+            break;
+        case "Intern":
+            addIntern();
+            break;
+        case "No more employees":
+            render(teamMembers);
+            break
+    }
+})
 
 function addEngineer(){
     inquirer.prompt([{
