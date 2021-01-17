@@ -19,48 +19,48 @@ function startCreatingTeam() {
         name: "managerName",
         message: "What is this team managers name?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "managerId",
         message: "What is this team managers id?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "managerEmail",
         message: "What is this team managers email?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "managerNumber",
         message: "What is this team managers number?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
     ])
     .then((usersAnswers) => {
@@ -84,16 +84,16 @@ function addAnotherTeamMember() {
         name: "addTeamMember",
         choices: ["Manager", "Engineer", "Intern", "No more employees"],
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
     ])
     .then((userChoice) => {
-      switch (userChoice.addTeamMember) {
+      switch (userChoice.addAnotherTeamMember) {
         case "Manager":
           addManager();
           break;
@@ -104,9 +104,8 @@ function addAnotherTeamMember() {
           addIntern();
           break;
         case "No more employees":
-          render(teamMembers);
+          render(newTeam);
           break;
-
       }
     });
 }
@@ -118,48 +117,48 @@ function addEngineer() {
         name: "engineerName",
         message: "What is the engineer's name?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "engineerId",
         message: "What is the engineer's id?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "engineerEmail",
         message: "What is the engineer's email?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "engineerGithub",
         message: "What is the engineer's github?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
     ])
     .then((usersAnswers) => {
@@ -182,48 +181,48 @@ function addIntern() {
         name: "internName",
         message: "What is the intern's name?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "internId",
         message: "What is the intern's id?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "internEmail",
         message: "What is the intern's email?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
       {
         type: "input",
         name: "internSchool",
         message: "What is the intern's school?",
         validate: (value) => {
-            if (value) {
-              return true;
-            } else {
-              return "please enter a value to continue";
-            }
-          },
+          if (value) {
+            return true;
+          } else {
+            return "please enter a value to continue";
+          }
+        },
       },
     ])
     .then((usersAnswers) => {
@@ -246,20 +245,11 @@ function createHtml() {
   fs.writeFileSync(outputPath, render(newTeam));
 }
 
-startCreatingTeam(); 
-{
-    inquirer.prompt(newTeam).then((usersAnswers) => {
-        const dataTeam = render(usersAnswers);
-        const currentWorkingDirectory = process.cwd();
-        const newFilePath = path.join(
-            currentWorkingDirectory,
-            "team.html"
-        );
-        writeToFile(newFilePath, dataTeam);
-    })
-};
+startCreatingTeam();
 
-createHtml(); 
+createHtml();
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
