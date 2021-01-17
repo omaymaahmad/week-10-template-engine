@@ -18,21 +18,49 @@ function startCreatingTeam() {
         type: "input",
         name: "managerName",
         message: "What is this team managers name?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "managerId",
         message: "What is this team managers id?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "managerEmail",
         message: "What is this team managers email?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "managerNumber",
         message: "What is this team managers number?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
     ])
     .then((usersAnswers) => {
@@ -55,6 +83,13 @@ function addAnotherTeamMember() {
         message: "Would you like to add another team member?",
         name: "addTeamMember",
         choices: ["Manager", "Engineer", "Intern", "No more employees"],
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
     ])
     .then((userChoice) => {
@@ -71,6 +106,7 @@ function addAnotherTeamMember() {
         case "No more employees":
           render(teamMembers);
           break;
+
       }
     });
 }
@@ -81,21 +117,49 @@ function addEngineer() {
         type: "input",
         name: "engineerName",
         message: "What is the engineer's name?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "engineerId",
         message: "What is the engineer's id?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "engineerEmail",
         message: "What is the engineer's email?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "engineerGithub",
         message: "What is the engineer's github?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
     ])
     .then((usersAnswers) => {
@@ -117,21 +181,49 @@ function addIntern() {
         type: "input",
         name: "internName",
         message: "What is the intern's name?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "internId",
         message: "What is the intern's id?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "internEmail",
         message: "What is the intern's email?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
       {
         type: "input",
         name: "internSchool",
         message: "What is the intern's school?",
+        validate: (value) => {
+            if (value) {
+              return true;
+            } else {
+              return "please enter a value to continue";
+            }
+          },
       },
     ])
     .then((usersAnswers) => {
@@ -154,13 +246,14 @@ function createHtml() {
   fs.writeFileSync(outputPath, render(newTeam));
 }
 
-startCreatingTeam() {
+startCreatingTeam(); 
+{
     inquirer.prompt(newTeam).then((usersAnswers) => {
         const dataTeam = render(usersAnswers);
         const currentWorkingDirectory = process.cwd();
         const newFilePath = path.join(
             currentWorkingDirectory,
-            "renderedHTML.html"
+            "team.html"
         );
         writeToFile(newFilePath, dataTeam);
     })
