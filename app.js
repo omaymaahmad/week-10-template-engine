@@ -9,115 +9,149 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-const newTeam = []; 
+const newTeam = [];
 
-
-function startCreatingTeam(){
-    inquirer.prompt([{
+function startCreatingTeam() {
+  inquirer
+    .prompt([
+      {
         type: "input",
         name: "managerName",
-        message: "What is this team managers name?"
-    }, {
+        message: "What is this team managers name?",
+      },
+      {
         type: "input",
         name: "managerId",
-        message: "What is this team managers id?"
-    }, {
+        message: "What is this team managers id?",
+      },
+      {
         type: "input",
         name: "managerEmail",
-        message: "What is this team managers email?"
-    }, {
+        message: "What is this team managers email?",
+      },
+      {
         type: "input",
         name: "managerNumber",
-        message: "What is this team managers number?"
-    }]).then(usersAnswers => {
-        const teamManager = new Manager(usersAnswers.managerName, usersAnswers.managerId, usersAnswers.managerEmail, usersAnswers.managerNumber); 
-        newTeam.push(teamManager);
-         addAnotherTeamMember();
-        
-    
-    })
+        message: "What is this team managers number?",
+      },
+    ])
+    .then((usersAnswers) => {
+      const teamManager = new Manager(
+        usersAnswers.managerName,
+        usersAnswers.managerId,
+        usersAnswers.managerEmail,
+        usersAnswers.managerNumber
+      );
+      newTeam.push(teamManager);
+      addAnotherTeamMember();
+    });
 }
 
-function addAnotherTeamMember(){
-inquirer.prompt([{type: "list",
-      message: "Would you like to add another team member?",
-      name: "addTeamMember",
-      choices: ["Manager","Engineer", "Intern", "No more employees"] 
-}]).then(userChoice => {
-    switch (userChoice.addTeamMember) {
+function addAnotherTeamMember() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Would you like to add another team member?",
+        name: "addTeamMember",
+        choices: ["Manager", "Engineer", "Intern", "No more employees"],
+      },
+    ])
+    .then((userChoice) => {
+      switch (userChoice.addTeamMember) {
         case "Manager":
-            addManager();
-            break;
+          addManager();
+          break;
         case "Engineer":
-            addEngineer();
-            break;
+          addEngineer();
+          break;
         case "Intern":
-            addIntern();
-            break;
+          addIntern();
+          break;
         case "No more employees":
-            render(teamMembers);
-            break
-    }
-})
-
-function addEngineer(){
-    inquirer.prompt([{
+          render(teamMembers);
+          break;
+      }
+    });
+}
+function addEngineer() {
+  inquirer
+    .prompt([
+      {
         type: "input",
         name: "engineerName",
-        message: "What is the engineer's name?"
-    }, {
+        message: "What is the engineer's name?",
+      },
+      {
         type: "input",
         name: "engineerId",
-        message: "What is the engineer's id?"
-    }, {
+        message: "What is the engineer's id?",
+      },
+      {
         type: "input",
         name: "engineerEmail",
-        message: "What is the engineer's email?"
-    }, {
+        message: "What is the engineer's email?",
+      },
+      {
         type: "input",
         name: "engineerGithub",
-        message: "What is the engineer's github?"
-    }]).then(usersAnswers => {
-        const teamEngineer = new Engineer(usersAnswers.engineerName, usersAnswers.engineerId, usersAnswers.engineerEmail, usersAnswers.engineerGithub); 
-        newTeam.push(teamEngineer);
-         addAnotherTeamMember();
-        
-    
-    })
+        message: "What is the engineer's github?",
+      },
+    ])
+    .then((usersAnswers) => {
+      const teamEngineer = new Engineer(
+        usersAnswers.engineerName,
+        usersAnswers.engineerId,
+        usersAnswers.engineerEmail,
+        usersAnswers.engineerGithub
+      );
+      newTeam.push(teamEngineer);
+      addAnotherTeamMember();
+    });
 }
 
-function addIntern(){
-    inquirer.prompt([{
+function addIntern() {
+  inquirer
+    .prompt([
+      {
         type: "input",
         name: "internName",
-        message: "What is the intern's name?"
-    }, {
+        message: "What is the intern's name?",
+      },
+      {
         type: "input",
         name: "internId",
-        message: "What is the intern's id?"
-    }, {
+        message: "What is the intern's id?",
+      },
+      {
         type: "input",
         name: "internEmail",
-        message: "What is the intern's email?"
-    }, {
+        message: "What is the intern's email?",
+      },
+      {
         type: "input",
         name: "internSchool",
-        message: "What is the intern's school?"
-    }]).then(usersAnswers => {
-        const teamIntern = new Intern(usersAnswers.internName, usersAnswers.internId, usersAnswers.internEmail, usersAnswers.internSchool); 
-        newTeam.push(teamIntern);
-         addAnotherTeamMember();
-        
-    
-    })
+        message: "What is the intern's school?",
+      },
+    ])
+    .then((usersAnswers) => {
+      const teamIntern = new Intern(
+        usersAnswers.internName,
+        usersAnswers.internId,
+        usersAnswers.internEmail,
+        usersAnswers.internSchool
+      );
+      newTeam.push(teamIntern);
+      addAnotherTeamMember();
+    });
 }
 
-function createHtml(){
-//If they have selected not to add another team member then render the html
-if (fs.existsSync(OUTPUT_DIR) ===false){
-    fs.mkdirSync(OUTPUT_DIR)
-}
-fs.writeFileSync(outputPath, render(newTeam))
+function createHtml() {
+  //If they have selected not to add another team member then render the html
+  if (fs.existsSync(OUTPUT_DIR) === false) {
+    fs.mkdirSync(OUTPUT_DIR);
+  }
+  fs.writeFileSync(outputPath, render(newTeam));
 }
 
 startCreatingTeam();
