@@ -93,7 +93,7 @@ function addAnotherTeamMember() {
       },
     ])
     .then((userChoice) => {
-      switch (userChoice.addAnotherTeamMember) {
+      switch (userChoice.addTeamMember) {
         case "Manager":
           addManager();
           break;
@@ -104,7 +104,7 @@ function addAnotherTeamMember() {
           addIntern();
           break;
         case "No more employees":
-          render(newTeam);
+          createHtml(newTeam)
           break;
       }
     });
@@ -237,17 +237,15 @@ function addIntern() {
     });
 }
 
-function createHtml() {
+function createHtml(employees) {
   //If they have selected not to add another team member then render the html
   if (fs.existsSync(OUTPUT_DIR) === false) {
     fs.mkdirSync(OUTPUT_DIR);
   }
-  fs.writeFileSync(outputPath, render(newTeam));
+  fs.writeFileSync(outputPath, render(employees));
 }
 
 startCreatingTeam();
-
-createHtml();
 
 
 // Write code to use inquirer to gather information about the development team members,
