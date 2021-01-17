@@ -16,19 +16,19 @@ function startCreatingTeam(){
     inquirer.prompt([{
         type: "input",
         name: "managerName",
-        message: "Whats this team managers name?"
+        message: "What is this team managers name?"
     }, {
         type: "input",
         name: "managerId",
-        message: "Whats this team managers id?"
+        message: "What is this team managers id?"
     }, {
         type: "input",
         name: "managerEmail",
-        message: "Whats this team managers email?"
+        message: "What is this team managers email?"
     }, {
         type: "input",
         name: "managerNumber",
-        message: "Whats this team managers number?"
+        message: "What is this team managers number?"
     }]).then(usersAnswers => {
         const teamManager = new Manager(usersAnswers.managerName, usersAnswers.managerId, usersAnswers.managerEmail, usersAnswers.managerNumber); 
         newTeam.push(teamManager);
@@ -43,7 +43,29 @@ function addAnotherTeamMember(){
 }
 
 function addEngineer(){
-//ask them Engineer Questions then recall the function asking them if they want to add another team member
+    inquirer.prompt([{
+        type: "input",
+        name: "engineerName",
+        message: "What is the engineer's name?"
+    }, {
+        type: "input",
+        name: "engineerId",
+        message: "What is the engineer's id?"
+    }, {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is the engineer's email?"
+    }, {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is the engineer's github?"
+    }]).then(usersAnswers => {
+        const teamEngineer = new Engineer(usersAnswers.engineerName, usersAnswers.engineerId, usersAnswers.engineerEmail, usersAnswers.engineerGithub); 
+        newTeam.push(teamEngineer);
+         addAnotherTeamMember();
+        
+    
+    })
 }
 
 function addIntern(){
