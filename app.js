@@ -69,7 +69,29 @@ function addEngineer(){
 }
 
 function addIntern(){
-//ask them Intern Questions then recall the function asking them if they want to add another team member
+    inquirer.prompt([{
+        type: "input",
+        name: "internName",
+        message: "What is the intern's name?"
+    }, {
+        type: "input",
+        name: "internId",
+        message: "What is the intern's id?"
+    }, {
+        type: "input",
+        name: "internEmail",
+        message: "What is the intern's email?"
+    }, {
+        type: "input",
+        name: "internSchool",
+        message: "What is the intern's school?"
+    }]).then(usersAnswers => {
+        const teamIntern = new Intern(usersAnswers.internName, usersAnswers.internId, usersAnswers.internEmail, usersAnswers.internSchool); 
+        newTeam.push(teamIntern);
+         addAnotherTeamMember();
+        
+    
+    })
 }
 
 function createHtml(){
