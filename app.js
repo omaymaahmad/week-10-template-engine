@@ -154,7 +154,19 @@ function createHtml() {
   fs.writeFileSync(outputPath, render(newTeam));
 }
 
-startCreatingTeam();
+startCreatingTeam() {
+    inquirer.prompt(newTeam).then((usersAnswers) => {
+        const dataTeam = render(usersAnswers);
+        const currentWorkingDirectory = process.cwd();
+        const newFilePath = path.join(
+            currentWorkingDirectory,
+            "renderedHTML.html"
+        );
+        writeToFile(newFilePath, dataTeam);
+    })
+};
+
+createHtml(); 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
